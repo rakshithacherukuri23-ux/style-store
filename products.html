@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Shop - Style Store</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+    <!-- Header -->
+
+    <header>
+
+        <h2>Style Store</h2>
+
+        <nav>
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="products.html">
+                Shop
+            </a>
+
+            <a href="cart.html">
+                Cart 🛒
+                <span id="cartCount">0</span>
+            </a>
+
+            <button
+                id="themeToggle"
+                onclick="toggleTheme()"
+            >
+                🌙 Dark Mode
+            </button>
+
+        </nav>
+
+    </header>
+
+
+    <!-- Products Section -->
+
+    <section>
+
+        <h1>
+            Our Products
+        </h1>
+
+        <p class="shipping-message">
+            🚚 Free shipping on orders over ₹1500
+        </p>
+
+
+        <!-- Categories -->
+
+        <div class="categories">
+
+            <button onclick="filterProducts('all')">
+                All
+            </button>
+
+            <button onclick="filterProducts('tshirt')">
+                T-Shirts
+            </button>
+
+            <button onclick="filterProducts('shirt')">
+                Shirts
+            </button>
+
+            <button onclick="filterProducts('jeans')">
+                Jeans
+            </button>
+
+            <button onclick="filterProducts('hoodie')">
+                Hoodies
+            </button>
+
+        </div>
+
+
+        <!-- Search -->
+
+        <div class="search-box">
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search for a product..."
+                onkeyup="searchProducts()"
+            >
+
+        </div>
+
+
+        <!-- No Products Message -->
+
+        <p
+            id="noProducts"
+            style="display:none; text-align:center;"
+        >
+            No products found.
+        </p>
+
+
+        <!-- Product Cards -->
+
+        <div class="products">
+
+
+            <!-- Cotton T-Shirt -->
+
+            <div
+                class="product"
+                data-category="tshirt"
+            >
+
+                <img
+                    src="images/tshirt.jpg"
+                    alt="Cotton T-Shirt"
+                >
+
+                <span class="sale-badge">
+                    SALE
+                </span>
+
+                <p class="stock-message">
+                    🔥 Limited stock available
+                </p>
+
+                <h3>
+                    Cotton T-Shirt
+                </h3>
+
+                <p>
+
+                    <span class="old-price">
+                        ₹499
+                    </span>
+
+                    ₹399
+
+                </p>
+
+
+                <a href="product-details.html?product=tshirt">
+
+                    <button>
+                        View Details
+                    </button>
+
+                </a>
+
+
+                <label for="tshirtSize">
+                    Size:
+                </label>
+
+                <select id="tshirtSize">
+
+                    <option>
+                        Small
+                    </option>
+
+                    <option>
+                        Medium
+                    </option>
+
+                    <option>
+                        Large
+                    </option>
+
+                    <option>
+                        XL
+                    </option>
+
+                </select>
+
+
+                <label for="tshirtQuantity">
+                    Quantity:
+                </label>
+
+                <input
+                    type="number"
+                    id="tshirtQuantity"
+                    value="1"
+                    min="1"
+                    max="10"
+                >
+
+
+                <button onclick="
+                    let quantity =
+                        Number(
+                            document.getElementById(
+                                'tshirtQuantity'
+                            ).value
+                        );
+
+                    let size =
+                        document.getElementById(
+                            'tshirtSize'
+                        ).value;
+
+                    addToCart(
+                        'Cotton T-Shirt',
+                        399,
+                        size,
+                        quantity
+                    );
+                ">
+
+                    Add to Cart
+
+                </button>
+
+
+                <button onclick="
+                    let quantity =
+                        Number(
+                            document.getElementById(
+                                'tshirtQuantity'
+                            ).value
+                        );
+
+                    let size =
+                        document.getElementById(
+                            'tshirtSize'
+                        ).value;
+
+                    buyNow(
+                        'Cotton T-Shirt',
+                        399,
+                        size,
+                        quantity
+                    );
+                ">
+
+                    Buy Now
+
+                </button>
+
+            </div>
+
+
+            <!-- Casual Shirt -->
+
+            <div
+                class="product"
+                data-category="shirt"
+            >
+
+                <img
+                    src="images/shirt.jpg"
+                    alt="Casual Shirt"
+                >
+
+                <span class="sale-badge">
+                    SALE
+                </span>
+
+                <p class="stock-message">
+                    🔥 Limited stock available
+                </p>
+
+                <h3>
+                    Casual Shirt
+                </h3>
+
+                <p>
+
+                    <span class="old-price">
+                        ₹799
+                    </span>
+
+                    ₹699
+
+                </p>
+
+
+                <a href="product-details.html?product=shirt">
+
+                    <button>
+                        View Details
+                    </button>
+
+                </a>
+
+
+                <label for="shirtSize">
+                    Size:
+                </label>
+
+                <select id="shirtSize">
+
+                    <option>
+                        Small
+                    </option>
+
+                    <option>
+                        Medium
+                    </option>
+
+                    <option>
+                        Large
+                    </option>
+
+                    <option>
+                        XL
+                    </option>
+
+                </select>
+
+
+                <label for="shirtQuantity">
+                    Quantity:
+                </label>
+
+                <input
+                    type="number"
+                    id="shirtQuantity"
+                    value="1"
+                    min="1"
+                    max="10"
+                >
+
+
+                <button onclick="
+                    let quantity =
+                        Number(
+                            document.getElementById(
+                                'shirtQuantity'
+                            ).value
+                        );
+
+                    let size =
+                        document.getElementById(
+                            'shirtSize'
+                        ).value;
+
+                    addToCart(
+                        'Casual Shirt',
+                        699,
+                        size,
+                        quantity
+                    );
+                ">
+
+                    Add to Cart
+
+                </button>
+
+
+                <button onclick="
+                    let quantity =
+                        Number(
+                            document.getElementById(
+                                'shirtQuantity'
+                            ).value
+                        );
+
+                    let size =
+                        document.getElementById(
+                            'shirtSize'
+                        ).value;
+
+                    buyNow(
+                        'Casual Shirt',
+                        699,
+                        size,
+                        quantity
+                    );
+                ">
+
+                    Buy Now
+
+                </button>
+
+            </div>
+
+
+            <!-- Blue Jeans -->
+
+            <div
+                class="product"
+                data-category="jeans"
+            >
+
+                <img
+                    src="images/jeans.jpg"
+                    alt="Blue Jeans"
+                >
+
+                <h3>
+                    Blue Jeans
+                </h3>
+
+                <p>
+                    ₹1199
+                </p>
+
+
+                <a href="product-details.html?product=jeans">
+
+                    <button>
+                        View Details
+                    </button>
+
+                </a>
+
+
+                <label for="jeansSize">
+                    Size:
+                </label>
+
+                <select id="jeansSize">
+
+                    <option>
+                        Small
+                    </option>
+
+                    <option>
+                        Medium
+                    </option>
+
+                    <option>
+                        Large
+                    </option>
+
+                    <option>
+                        XL
+                    </option>
+
+                </select>
+
+
+                <label for="jeansQuantity">
+                    Quantity:
+                </label>
+
+                <input
+                    type="number"
+                    id="jeansQuantity"
+                    value="1"
+                    min="1"
+                    max="10"
+                >
+
+
+                <button onclick="
+                    let quantity =
+                        Number(
+                            document.getElementById(
+                                'jeansQuantity'
+                            ).value
+                        );
+
+                    let size =
+                        document.getElementById(
+                            'jeansSize'
+                        ).value;
+
+                    addToCart(
+                        'Blue Jeans',
+                        1199,
+                        size,
+                        quantity
+                    );
+                ">
+
+                    Add to Cart
+
+                </button>
+
+
+                <button onclick="
+                    let quantity =
+                        Number(
+                            document.getElementById(
+                                'jeansQuantity'
+                            ).value
+                        );
+
+                    let size =
+                        document.getElementById(
+                            'jeansSize'
+                        ).value;
+
+                    buyNow(
+                        'Blue Jeans',
+                        1199,
+                        size,
+                        quantity
+                    );
+                ">
+
+                    Buy Now
+
+                </button>
+
+            </div>
+
+
+            <!-- Hoodie -->
+
+            <div
+                class="product"
+                data-category="hoodie"
+            >
+
+                <img
+                    src="images/hoodie.jpg"
+                    alt="Hoodie"
+                >
+
+                <span class="sale-badge">
+                    SALE
+                </span>
+
+                <p class="stock-message">
+                    🔥 Limited stock available
+                </p>
+
+                <h3>
+                    Hoodie
+                </h3>
+
+                <p>
+
+                    <span class="old-price">
+                        ₹999
+                    </span>
+
+                    ₹899
+
+                </p>
+
+
+                <a href="product-details.html?product=hoodie">
+
+                    <button>
+                        View Details
+                    </button>
+
+                </a>
+
+
+                <label for="hoodieSize">
+                    Size:
+                </label>
+
+                <select id="hoodieSize">
+
+                    <option>
+                        Small
+                    </option>
+
+                    <option>
+                        Medium
+                    </option>
+
+                    <option>
+                        Large
+                    </option>
+
+                    <option>
+                        XL
+                    </option>
+
+                </select>
+
+
+                <label for="hoodieQuantity">
+                    Quantity:
+                </label>
+
+                <input
+                    type="number"
+                    id="hoodieQuantity"
+                    value="1"
+                    min="1"
+                    max="10"
+                >
+
+
+                <button onclick="
+                    let quantity =
+                        Number(
+                            document.getElementById(
+                                'hoodieQuantity'
+                            ).value
+                        );
+
+                    let size =
+                        document.getElementById(
+                            'hoodieSize'
+                        ).value;
+
+                    addToCart(
+                        'Hoodie',
+                        899,
+                        size,
+                        quantity
+                    );
+                ">
+
+                    Add to Cart
+
+                </button>
+
+
+                <button onclick="
+                    let quantity =
+                        Number(
+                            document.getElementById(
+                                'hoodieQuantity'
+                            ).value
+                        );
+
+                    let size =
+                        document.getElementById(
+                            'hoodieSize'
+                        ).value;
+
+                    buyNow(
+                        'Hoodie',
+                        899,
+                        size,
+                        quantity
+                    );
+                ">
+
+                    Buy Now
+
+                </button>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- Footer -->
+
+    <footer>
+
+        <p>
+            © 2026 Style Store. All Rights Reserved.
+        </p>
+
+    </footer>
+
+
+    <!-- JavaScript -->
+
+    <script src="script.js"></script>
+
+
+</body>
+
+</html>

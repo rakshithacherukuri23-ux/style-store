@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <title>Style Store</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+    <!-- Header -->
+
+    <header>
+
+        <h2>Style Store</h2>
+
+        <nav>
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="products.html">
+                Shop
+            </a>
+
+            <a href="cart.html">
+                Cart 🛒
+                <span id="cartCount">0</span>
+            </a>
+
+            <button
+                id="themeToggle"
+                onclick="toggleTheme()"
+            >
+                🌙 Dark Mode
+            </button>
+
+        </nav>
+
+    </header>
+
+
+    <!-- Hero Section -->
+
+    <section class="hero">
+
+        <h1>
+            Welcome to Style Store
+        </h1>
+
+        <p>
+            Trendy clothes at affordable prices
+        </p>
+
+        <a href="products.html">
+
+            <button>
+                Shop Now
+            </button>
+
+        </a>
+
+        <p class="offer">
+            ✨ Check Out Our New Collection!
+        </p>
+
+    </section>
+
+
+    <!-- Featured Products -->
+
+    <section class="featured">
+
+        <h2>
+            ⭐ Featured Products
+        </h2>
+
+
+        <div class="featured-products">
+
+
+            <!-- T-Shirt -->
+
+            <div class="featured-product">
+
+                <img
+                    src="images/tshirt.jpg"
+                    alt="Cotton T-Shirt"
+                >
+
+                <h3>
+                    Cotton T-Shirt
+                </h3>
+
+                <p>
+                    ₹399
+                </p>
+
+                <a href="product-details.html?product=tshirt">
+
+                    <button>
+                        View Product
+                    </button>
+
+                </a>
+
+            </div>
+
+
+            <!-- Jeans -->
+
+            <div class="featured-product">
+
+                <img
+                    src="images/jeans.jpg"
+                    alt="Blue Jeans"
+                >
+
+                <h3>
+                    Blue Jeans
+                </h3>
+
+                <p>
+                    ₹1199
+                </p>
+
+                <a href="product-details.html?product=jeans">
+
+                    <button>
+                        View Product
+                    </button>
+
+                </a>
+
+            </div>
+
+
+            <!-- Hoodie -->
+
+            <div class="featured-product">
+
+                <img
+                    src="images/hoodie.jpg"
+                    alt="Hoodie"
+                >
+
+                <h3>
+                    Hoodie
+                </h3>
+
+                <p>
+                    ₹899
+                </p>
+
+                <a href="product-details.html?product=hoodie">
+
+                    <button>
+                        View Product
+                    </button>
+
+                </a>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- New Collection Banner -->
+
+    <section class="collection-banner">
+
+        <h2>
+            ✨ New Collection
+        </h2>
+
+        <p>
+            Discover fresh styles for every occasion.
+        </p>
+
+        <a href="products.html">
+
+            <button>
+                Explore Collection
+            </button>
+
+        </a>
+
+    </section>
+
+
+    <!-- Special Sale Banner -->
+
+    <section class="sale-banner">
+
+        <h2>
+            🔥 Special Sale
+        </h2>
+
+        <p>
+            Save on selected styles while supplies last!
+        </p>
+
+        <a href="products.html">
+
+            <button>
+                Shop Sale
+            </button>
+
+        </a>
+
+    </section>
+
+
+    <!-- Why Choose Us -->
+
+    <section class="why-us">
+
+        <h2>
+            Why Choose Us?
+        </h2>
+
+        <p>
+            ✔ Quality Clothing
+        </p>
+
+        <p>
+            ✔ Affordable Prices
+        </p>
+
+        <p>
+            ✔ Latest Fashion
+        </p>
+
+        <p>
+            ✔ Easy Ordering
+        </p>
+
+    </section>
+
+
+    <!-- About Us -->
+
+    <section class="about-us">
+
+        <h2>
+            About Style Store
+        </h2>
+
+        <p>
+            Style Store is a simple online clothing shop
+            offering stylish and comfortable clothes at
+            affordable prices.
+        </p>
+
+        <p>
+            Explore our collection and find your
+            favorite style.
+        </p>
+
+    </section>
+
+
+    <!-- Customer Reviews -->
+
+    <section class="reviews">
+
+        <h2>
+            ⭐ What Our Customers Say
+        </h2>
+
+
+        <div class="review-list">
+
+
+            <div class="review">
+
+                <p>
+                    "Great quality and comfortable clothes!"
+                </p>
+
+                <strong>
+                    — Happy Customer
+                </strong>
+
+            </div>
+
+
+            <div class="review">
+
+                <p>
+                    "The ordering process was simple and easy."
+                </p>
+
+                <strong>
+                    — Happy Customer
+                </strong>
+
+            </div>
+
+
+            <div class="review">
+
+                <p>
+                    "Good products at affordable prices."
+                </p>
+
+                <strong>
+                    — Happy Customer
+                </strong>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- Contact -->
+
+    <section class="contact">
+
+        <h2>
+            Contact Us
+        </h2>
+
+        <p>
+            Have a question?
+            We'd love to hear from you.
+        </p>
+
+        <p>
+            📧 Email:
+            yourstore@example.com
+        </p>
+
+        <p>
+            📞 Phone:
+            +91 00000 00000
+        </p>
+
+    </section>
+
+
+    <!-- Back To Top -->
+
+    <a
+        href="#"
+        class="back-to-top"
+    >
+        ↑ Back to Top
+    </a>
+
+
+    <!-- Footer -->
+
+    <footer>
+
+        <p>
+            © 2026 Style Store. All Rights Reserved.
+        </p>
+
+    </footer>
+
+
+    <!-- JavaScript -->
+
+    <script src="script.js"></script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <title>Product Details - Style Store</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+    <header>
+
+        <h2>Style Store</h2>
+
+        <nav>
+
+            <a href="index.html">Home</a>
+
+            <a href="products.html">Shop</a>
+
+            <a href="cart.html">
+                Cart 🛒 <span id="cartCount">0</span>
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <a href="products.html" class="back-to-shop">
+        ← Back to Shop
+    </a>
+
+
+    <section class="product-details">
+
+        <div class="product-details-image">
+
+            <img
+                id="productImage"
+                src=""
+                alt="Product"
+            >
+
+        </div>
+
+
+        <div class="product-details-info">
+
+            <h1 id="productName"></h1>
+
+            <h2 id="productPrice"></h2>
+
+            <p id="productDescription"></p>
+
+
+            <label for="size">
+                Choose Size:
+            </label>
+
+            <select id="size">
+
+                <option>Small</option>
+                <option>Medium</option>
+                <option>Large</option>
+                <option>XL</option>
+
+            </select>
+
+
+            <br><br>
+
+
+            <label for="quantity">
+                Quantity:
+            </label>
+
+            <input
+                type="number"
+                id="quantity"
+                value="1"
+                min="1"
+                max="10"
+            >
+
+
+            <br><br>
+
+
+            <button id="addButton">
+                Add to Cart
+            </button>
+
+            <button id="buyButton">
+                Buy Now
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <script src="script.js"></script>
+
+
+    <script>
+
+        let product =
+            new URLSearchParams(
+                window.location.search
+            ).get("product");
+
+
+        let products = {
+
+            tshirt: {
+
+                name: "Cotton T-Shirt",
+
+                price: 399,
+
+                image: "images/tshirt.jpg",
+
+                description:
+                    "Comfortable cotton T-shirt for everyday wear."
+
+            },
+
+
+            shirt: {
+
+                name: "Casual Shirt",
+
+                price: 699,
+
+                image: "images/shirt.jpg",
+
+                description:
+                    "A stylish casual shirt for everyday use."
+
+            },
+
+
+            jeans: {
+
+                name: "Blue Jeans",
+
+                price: 1199,
+
+                image: "images/jeans.jpg",
+
+                description:
+                    "Comfortable blue jeans with a classic look."
+
+            },
+
+
+            hoodie: {
+
+                name: "Hoodie",
+
+                price: 899,
+
+                image: "images/hoodie.jpg",
+
+                description:
+                    "A comfortable hoodie for a relaxed style."
+
+            }
+
+        };
+
+
+        let selectedProduct =
+            products[product];
+
+
+        if (selectedProduct) {
+
+
+            document
+                .getElementById("productImage")
+                .src = selectedProduct.image;
+
+
+            document
+                .getElementById("productImage")
+                .alt = selectedProduct.name;
+
+
+            document
+                .getElementById("productName")
+                .textContent = selectedProduct.name;
+
+
+            document
+                .getElementById("productPrice")
+                .textContent =
+                    "₹" + selectedProduct.price;
+
+
+            document
+                .getElementById("productDescription")
+                .textContent =
+                    selectedProduct.description;
+
+
+            /* Add to Cart */
+
+            document
+                .getElementById("addButton")
+                .onclick = function() {
+
+
+                    let quantity =
+                        Number(
+                            document
+                                .getElementById("quantity")
+                                .value
+                        );
+
+
+                    let size =
+                        document
+                            .getElementById("size")
+                            .value;
+
+
+                    for (
+                        let i = 0;
+                        i < quantity;
+                        i++
+                    ) {
+
+                        addToCart(
+                            selectedProduct.name,
+                            selectedProduct.price,
+                            size
+                        );
+
+                    }
+
+                };
+
+
+            /* Buy Now */
+
+            document
+                .getElementById("buyButton")
+                .onclick = function() {
+
+
+                    let quantity =
+                        Number(
+                            document
+                                .getElementById("quantity")
+                                .value
+                        );
+
+
+                    let size =
+                        document
+                            .getElementById("size")
+                            .value;
+
+
+                    for (
+                        let i = 0;
+                        i < quantity;
+                        i++
+                    ) {
+
+                        addToCart(
+                            selectedProduct.name,
+                            selectedProduct.price,
+                            size
+                        );
+
+                    }
+
+
+                    window.location.href =
+                        "cart.html";
+
+                };
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>

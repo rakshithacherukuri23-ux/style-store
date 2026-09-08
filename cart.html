@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Cart - Style Store</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+
+        .payment-methods {
+            margin-top: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background: #fff;
+        }
+
+        .payment-methods h3 {
+            margin-bottom: 15px;
+        }
+
+        .payment-methods label {
+            display: block;
+            padding: 12px;
+            margin: 8px 0;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .payment-methods label:hover {
+            background: #f5f5f5;
+        }
+
+        .payment-methods input {
+            margin-right: 10px;
+        }
+
+        .confirmation {
+            max-width: 600px;
+            margin: 30px auto;
+            padding: 30px;
+            text-align: center;
+            border: 2px solid #222;
+            border-radius: 12px;
+            background: #f5f5f5;
+        }
+
+        .confirmation h2 {
+            margin-bottom: 15px;
+        }
+
+        .confirmation p {
+            margin: 10px 0;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- Header -->
+
+    <header>
+
+        <h2>
+            Style Store
+        </h2>
+
+        <nav>
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="products.html">
+                Shop
+            </a>
+
+            <a href="cart.html">
+                Cart 🛒
+                <span id="cartCount">0</span>
+            </a>
+
+            <button
+                id="themeToggle"
+                onclick="toggleTheme()"
+            >
+                🌙 Dark Mode
+            </button>
+
+        </nav>
+
+    </header>
+
+
+    <!-- Cart -->
+
+    <section>
+
+        <h1>
+            Your Cart
+        </h1>
+
+        <p
+            id="freeShippingMessage"
+            class="shipping-message"
+        >
+            🚚 Free shipping on orders over ₹1500
+        </p>
+
+
+        <!-- Cart Items -->
+
+        <div id="cartItems"></div>
+
+
+        <!-- Empty Cart -->
+
+        <div
+            id="emptyCart"
+            class="empty-cart"
+            style="display:none;"
+        >
+
+            <h2>
+                🛒 Your cart is empty
+            </h2>
+
+            <p>
+                Looks like you haven't added
+                anything to your cart yet.
+            </p>
+
+            <a href="products.html">
+
+                <button>
+                    Continue Shopping
+                </button>
+
+            </a>
+
+        </div>
+
+
+        <!-- Clear Cart -->
+
+        <div
+            id="cartButtons"
+            style="text-align:center; margin:20px;"
+        >
+
+            <button onclick="clearCart()">
+                Clear Cart
+            </button>
+
+            <a href="products.html">
+
+                <button>
+                    Continue Shopping
+                </button>
+
+            </a>
+
+        </div>
+
+
+    </section>
+
+
+    <!-- Order Summary -->
+
+    <section
+        id="orderSummary"
+        class="order-summary"
+    >
+
+        <h2>
+            🧾 Order Summary
+        </h2>
+
+        <p>
+            Subtotal:
+            ₹<span id="subtotal">0</span>
+        </p>
+
+        <p>
+            Shipping:
+            ₹<span id="shipping">0</span>
+        </p>
+
+        <p
+            id="savings"
+            style="display:none;"
+        >
+            You saved:
+            ₹<span id="savingsAmount">0</span>
+        </p>
+
+
+        <!-- Coupon -->
+
+        <div>
+
+            <p>
+                Have a coupon?
+            </p>
+
+            <input
+                type="text"
+                id="coupon"
+                placeholder="Enter coupon code"
+            >
+
+            <br>
+
+            <button onclick="applyCoupon()">
+                Apply Coupon
+            </button>
+
+            <p id="couponMessage"></p>
+
+        </div>
+
+
+        <p id="discount">
+            Discount: ₹0
+        </p>
+
+        <p id="total">
+            Total: ₹<span id="totalAmount">0</span>
+        </p>
+
+    </section>
+
+
+    <!-- Customer Information -->
+
+    <section
+        id="orderSection"
+        class="order-section"
+    >
+
+        <h2>
+            📦 Customer Information
+        </h2>
+
+
+        <form
+            onsubmit="placeOrder(event)"
+        >
+
+
+            <label for="customerName">
+                Name:
+            </label>
+
+            <input
+                type="text"
+                id="customerName"
+                placeholder="Enter your name"
+                required
+            >
+
+
+            <label for="customerEmail">
+                Email:
+            </label>
+
+            <input
+                type="email"
+                id="customerEmail"
+                placeholder="Enter your email"
+                required
+            >
+
+
+            <label for="customerAddress">
+                Address:
+            </label>
+
+            <textarea
+                id="customerAddress"
+                placeholder="Enter your address"
+                rows="4"
+                required
+            ></textarea>
+
+
+            <!-- Payment Methods -->
+
+            <div class="payment-methods">
+
+                <h3>
+                    💳 Choose Payment Method
+                </h3>
+
+
+                <label>
+
+                    <input
+                        type="radio"
+                        name="paymentMethod"
+                        value="UPI"
+                        required
+                    >
+
+                    UPI
+
+                </label>
+
+
+                <label>
+
+                    <input
+                        type="radio"
+                        name="paymentMethod"
+                        value="Credit/Debit Card"
+                    >
+
+                    Credit/Debit Card
+
+                </label>
+
+
+                <label>
+
+                    <input
+                        type="radio"
+                        name="paymentMethod"
+                        value="Cash on Delivery"
+                    >
+
+                    Cash on Delivery
+
+                </label>
+
+            </div>
+
+
+            <button type="submit">
+
+                Place Order
+
+            </button>
+
+
+        </form>
+
+    </section>
+
+
+    <!-- Order Confirmation -->
+
+    <div
+        id="confirmation"
+        class="confirmation"
+        style="display:none;"
+    >
+
+        <h2>
+            🎉 Order Confirmed!
+        </h2>
+
+        <p>
+            Thank you for shopping with Style Store.
+        </p>
+
+        <p>
+            Your order has been placed successfully.
+        </p>
+
+        <p>
+            Payment Method:
+            <strong id="confirmedPayment">
+            </strong>
+        </p>
+
+        <p>
+            We will process your order soon.
+        </p>
+
+        <a href="products.html">
+
+            <button>
+                Continue Shopping
+            </button>
+
+        </a>
+
+    </div>
+
+
+    <!-- Back To Top -->
+
+    <a
+        href="#"
+        class="back-to-top"
+    >
+        ↑ Back to Top
+    </a>
+
+
+    <!-- Footer -->
+
+    <footer>
+
+        <p>
+            © 2026 Style Store.
+            All Rights Reserved.
+        </p>
+
+    </footer>
+
+
+    <!-- JavaScript -->
+
+    <script src="script.js"></script>
+
+
+    <script>
+
+        let cart =
+            JSON.parse(
+                localStorage.getItem("cart")
+            ) || [];
+
+
+        let couponApplied = false;
+
+
+        function displayCart() {
+
+            let cartItems =
+                document.getElementById("cartItems");
+
+            let emptyCart =
+                document.getElementById("emptyCart");
+
+            let cartButtons =
+                document.getElementById("cartButtons");
+
+            let orderSummary =
+                document.getElementById("orderSummary");
+
+            let orderSection =
+                document.getElementById("orderSection");
+
+            cartItems.innerHTML = "";
+
+
+            if (cart.length === 0) {
+
+                emptyCart.style.display = "block";
+
+                cartButtons.style.display = "none";
+
+                orderSummary.style.display = "none";
+
+                orderSection.style.display = "none";
+
+                return;
+
+            }
+
+
+            emptyCart.style.display = "none";
+
+            cartButtons.style.display = "block";
+
+            orderSummary.style.display = "block";
+
+            orderSection.style.display = "block";
+
+
+            cart.forEach(function(product, index) {
+
+                let item =
+                    document.createElement("div");
+
+                item.className = "cart-item";
+
+
+                let quantity =
+                    Number(product.quantity) || 1;
+
+
+                item.innerHTML = `
+
+                    <h3>
+                        ${product.name}
+                    </h3>
+
+                    <p>
+                        Size:
+                        ${product.size || "Not selected"}
+                    </p>
+
+                    <p>
+                        Price:
+                        ₹${product.price}
+                    </p>
+
+                    <p>
+
+                        Quantity:
+
+                        <button
+                            onclick="decreaseQuantity(${index})"
+                        >
+                            −
+                        </button>
+
+                        ${quantity}
+
+                        <button
+                            onclick="increaseQuantity(${index})"
+                        >
+                            +
+                        </button>
+
+                    </p>
+
+                    <p>
+                        Item Total:
+                        ₹${product.price * quantity}
+                    </p>
+
+                    <button
+                        onclick="removeItem(${index})"
+                    >
+                        Remove
+                    </button>
+
+                `;
+
+
+                cartItems.appendChild(item);
+
+            });
+
+
+            updateSummary();
+
+        }
+
+
+        function increaseQuantity(index) {
+
+            if (cart[index].quantity < 10) {
+
+                cart[index].quantity++;
+
+            } else {
+
+                alert(
+                    "Maximum quantity is 10."
+                );
+
+            }
+
+            saveCart();
+
+            displayCart();
+
+        }
+
+
+        function decreaseQuantity(index) {
+
+            if (cart[index].quantity > 1) {
+
+                cart[index].quantity--;
+
+            } else {
+
+                removeItem(index);
+
+                return;
+
+            }
+
+            saveCart();
+
+            displayCart();
+
+        }
+
+
+        function removeItem(index) {
+
+            cart.splice(index, 1);
+
+            saveCart();
+
+            displayCart();
+
+        }
+
+
+        function clearCart() {
+
+            if (
+                confirm(
+                    "Are you sure you want to clear your cart?"
+                )
+            ) {
+
+                cart = [];
+
+                saveCart();
+
+                displayCart();
+
+            }
+
+        }
+
+
+        function saveCart() {
+
+            localStorage.setItem(
+                "cart",
+                JSON.stringify(cart)
+            );
+
+            updateCartCount();
+
+        }
+
+
+        function updateSummary() {
+
+            let subtotal = 0;
+
+
+            cart.forEach(function(product) {
+
+                subtotal +=
+                    product.price *
+                    (Number(product.quantity) || 1);
+
+            });
+
+
+            let shipping =
+                subtotal >= 1500
+                    ? 0
+                    : 100;
+
+
+            let discount = 0;
+
+
+            if (couponApplied) {
+
+                discount =
+                    Math.round(
+                        subtotal * 0.10
+                    );
+
+            }
+
+
+            let total =
+                subtotal +
+                shipping -
+                discount;
+
+
+            document.getElementById(
+                "subtotal"
+            ).textContent = subtotal;
+
+
+            document.getElementById(
+                "shipping"
+            ).textContent =
+                shipping === 0
+                    ? "FREE"
+                    : shipping;
+
+
+            document.getElementById(
+                "discount"
+            ).textContent =
+                "Discount: ₹" + discount;
+
+
+            document.getElementById(
+                "totalAmount"
+            ).textContent = total;
+
+
+            let savings =
+                document.getElementById(
+                    "savings"
+                );
+
+
+            let savingsAmount =
+                document.getElementById(
+                    "savingsAmount"
+                );
+
+
+            if (discount > 0) {
+
+                savings.style.display = "block";
+
+                savingsAmount.textContent =
+                    discount;
+
+            } else {
+
+                savings.style.display = "none";
+
+            }
+
+        }
+
+
+        function applyCoupon() {
+
+            let coupon =
+                document.getElementById(
+                    "coupon"
+                ).value
+                .trim()
+                .toUpperCase();
+
+
+            let message =
+                document.getElementById(
+                    "couponMessage"
+                );
+
+
+            if (coupon === "SAVE10") {
+
+                couponApplied = true;
+
+                message.textContent =
+                    "🎉 Coupon applied! You saved 10%.";
+
+                updateSummary();
+
+            } else {
+
+                couponApplied = false;
+
+                message.textContent =
+                    "❌ Invalid coupon code.";
+
+                updateSummary();
+
+            }
+
+        }
+
+
+        function placeOrder(event) {
+
+            event.preventDefault();
+
+
+            if (cart.length === 0) {
+
+                alert(
+                    "Your cart is empty."
+                );
+
+                return;
+
+            }
+
+
+            let payment =
+                document.querySelector(
+                    'input[name="paymentMethod"]:checked'
+                );
+
+
+            if (!payment) {
+
+                alert(
+                    "Please choose a payment method."
+                );
+
+                return;
+
+            }
+
+
+            document.getElementById(
+                "confirmedPayment"
+            ).textContent =
+                payment.value;
+
+
+            alert(
+                "Your order has been placed successfully!"
+            );
+
+
+            cart = [];
+
+            saveCart();
+
+            displayCart();
+
+
+            document.getElementById(
+                "orderSection"
+            ).style.display = "none";
+
+
+            document.getElementById(
+                "confirmation"
+            ).style.display = "block";
+
+        }
+
+
+        displayCart();
+
+    </script>
+
+
+</body>
+
+</html>
